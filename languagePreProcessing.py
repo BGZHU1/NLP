@@ -1,6 +1,6 @@
 import re
-
-text = ''.join(open('brown-test.txt').readlines())
+docName = "brown-train.txt"
+text = ''.join(open(docName).readlines())
 sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
 list = []
 for s in sentences :
@@ -17,16 +17,35 @@ for s in article :
             dict[c] += 1
         else :
             dict[c] = 1
-print(dict)
-
+#print(dict)
+#print(totalNumWords)
 
 #print(article)
+
 newArticle = []
 for s in article :
     for c in s.split() :
         if c in dict and dict[c] == 1 :
+            #print(s)
             newArticle.append(s.replace(c,"<unk>"))
+            #print(s.replace(c,"<unk>"))
         else :
             newArticle.append(s)
 
-print(newArticle)
+#print(newArticle)
+#after cleaned everything and replaced with <unk>
+newDict = {}
+totalTokens = 0
+for s in newArticle :
+    for c in s.split() :
+        totalTokens += 1
+        if c in newDict :
+            newDict[c] += 1
+        else :
+            newDict[c] = 1
+#print(dict)
+#Q1:
+print(len(newDict))
+#Q2 : (inclduing padding & unk)
+print(totalTokens)
+#Q3 : did not occure :
