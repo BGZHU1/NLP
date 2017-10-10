@@ -11,8 +11,10 @@ article = [s.lower() for s in list]
 
 dict = {}
 
+originalTotalWord = 0
 for s in article :
     for c in s.split() :
+        originalTotalWord += 1
         if c in dict :
             dict[c] += 1
         else :
@@ -27,10 +29,10 @@ for s in article :
     for c in s.split() :
         if c in dict and dict[c] == 1 :
             #print(s)
-            newArticle.append(s.replace(c,"<unk>"))
+            newArticle.append(c.replace(c,"<unk>"))
             #print(s.replace(c,"<unk>"))
         else :
-            newArticle.append(s)
+            newArticle.append(c)
 
 #print(newArticle)
 #after cleaned everything and replaced with <unk>
@@ -45,7 +47,8 @@ for s in newArticle :
             newDict[c] = 1
 #print(dict)
 #Q1:
+print("answer for Q1 : ")
 print(len(newDict))
 #Q2 : (inclduing padding & unk)
+print("answer for Q2 : ")
 print(totalTokens)
-#Q3 : did not occure :
