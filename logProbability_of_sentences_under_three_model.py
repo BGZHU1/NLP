@@ -1,3 +1,4 @@
+#Q5
 from languagePreProcessing import newDict, totalTokens
 from biagram_not_occure import dictBrownTest
 import math
@@ -47,3 +48,26 @@ for s in list :
 print(biagram_results)
 
 #add one smoothing
+add_one_smoothing_biagram_results = {}
+
+for s in list :
+    result = 0.0
+    temp = s.split()
+    countAdding = 0
+    for i in range(0, len(s.split()) - 1):
+        divident_word = temp[i] + temp[i + 1]
+        divisor_word = temp[i]
+        prob_divident = dictBrownTest.get(divident_word)
+        prob_divisor = newDict.get(divisor_word)
+
+        if (prob_divident == None) :
+            countAdding += 1
+            prob_divident = 1
+        if (prob_divisor == None) :
+            prob_divisor = 1
+            countAdding += 1
+        prob = math.log(float(prob_divident)) - math.log(float(prob_divisor + countAdding))
+        result += prob
+    add_one_smoothing_biagram_results[s] = result
+
+print(add_one_smoothing_biagram_results)
