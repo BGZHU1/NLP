@@ -36,8 +36,8 @@ for s in list :
         divisor_word = temp[i]
         prob_divident = dictBrownTest.get(divident_word)
         prob_divisor = newDict.get(divisor_word)
-        print(prob_divisor)
-        print(prob_divident)
+        #print(prob_divisor)
+        #print(prob_divident)
         if (prob_divisor == None or prob_divident == None) :
             result += 0.0
         else :
